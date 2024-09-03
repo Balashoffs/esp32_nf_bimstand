@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Iot.Device.Bmp180</name>
+    </assembly>
+    <members>
+        <member name="T:Iot.Device.Bmp180.Bmp180">
+            <summary>
+            BMP180 - barometer, altitude and temperature sensor.
+            </summary>
+        </member>
+        <member name="F:Iot.Device.Bmp180.Bmp180.DefaultI2cAddress">
+            <summary>
+            Default I2C address.
+            </summary>
+        </member>
+        <member name="M:Iot.Device.Bmp180.Bmp180.#ctor(System.Device.I2c.I2cDevice)">
+            <summary>
+            Initializes a new instance of the<see cref="T:Iot.Device.Bmp180.Bmp180" /> class.
+            </summary>
+            <param name="i2cDevice">I2C device used to communicate with the device.</param>
+        </member>
+        <member name="M:Iot.Device.Bmp180.Bmp180.SetSampling(Iot.Device.Bmp180.Sampling)">
+            <summary>
+            Sets sampling to the given value.
+            </summary>
+            <param name="mode">Sampling Mode.</param>
+        </member>
+        <member name="M:Iot.Device.Bmp180.Bmp180.ReadTemperature">
+            <summary>
+             Reads the temperature from the sensor.
+            </summary>
+            <returns>
+             Temperature in degrees celsius.
+            </returns>
+        </member>
+        <member name="M:Iot.Device.Bmp180.Bmp180.ReadPressure">
+            <summary>
+             Reads the pressure from the sensor.
+            </summary>
+            <returns>
+             Atmospheric pressure.
+            </returns>
+        </member>
+        <member name="M:Iot.Device.Bmp180.Bmp180.ReadAltitude(UnitsNet.Pressure)">
+            <summary>
+             Calculates the altitude in meters from the specified sea-level pressure.
+            </summary>
+            <param name="seaLevelPressure">
+             Sea-level pressure.
+            </param>
+            <returns>
+             Height above sea level.
+            </returns>
+        </member>
+        <member name="M:Iot.Device.Bmp180.Bmp180.ReadAltitude">
+            <summary>
+             Calculates the altitude in meters from the mean sea-level pressure.
+            </summary>
+            <returns>
+             Height in meters above sea level.
+            </returns>
+        </member>
+        <member name="M:Iot.Device.Bmp180.Bmp180.ReadSeaLevelPressure(UnitsNet.Length)">
+            <summary>
+             Calculates the pressure at sea level when given a known altitude.
+            </summary>
+            <param name="altitude" >
+             Altitude in meters.
+            </param>
+            <returns>
+             Pressure.
+            </returns>
+        </member>
+        <member name="M:Iot.Device.Bmp180.Bmp180.ReadSeaLevelPressure">
+            <summary>
+             Calculates the pressure at sea level, when the current altitude is 0.
+            </summary>
+            <returns>
+             Pressure.
+            </returns>
+        </member>
+        <member name="M:Iot.Device.Bmp180.Bmp180.CalculateTrueTemperature">
+            <summary>
+             Calculate true temperature.
+            </summary>
+            <returns>
+             Coefficient B5.
+            </returns>
+        </member>
+        <member name="M:Iot.Device.Bmp180.Bmp180.ReadRawTemperature">
+            <summary>
+             Reads raw temperatue from the sensor.
+            </summary>
+            <returns>
+             Raw temperature.
+            </returns>
+        </member>
+        <member name="M:Iot.Device.Bmp180.Bmp180.ReadRawPressure">
+            <summary>
+             Reads raw pressure from the sensor
+             Taken from datasheet, Section 3.3.1
+             Standard            - 8ms
+             UltraLowPower       - 5ms
+             HighResolution      - 14ms
+             UltraHighResolution - 26ms.
+            </summary>
+            <returns>
+             Raw pressure.
+            </returns>
+        </member>
+        <member name="M:Iot.Device.Bmp180.Bmp180.Read8BitsFromRegister(System.Byte)">
+            <summary>
+             Reads an 8 bit value from a register.
+            </summary>
+            <param name="register">
+             Register to read from.
+            </param>
+            <returns>
+             Value from register.
+            </returns>
+        </member>
+        <member name="M:Iot.Device.Bmp180.Bmp180.Read16BitsFromRegister(System.Byte)">
+            <summary>
+             Reads a 16 bit value over I2C.
+            </summary>
+            <param name="register">
+             Register to read from.
+            </param>
+            <returns>
+             Value from register.
+            </returns>
+        </member>
+        <member name="M:Iot.Device.Bmp180.Bmp180.Read16BitsFromRegisterBE(System.Byte)">
+            <summary>
+             Reads a 16 bit value over I2C.
+            </summary>
+            <param name="register">Register to read from.</param>
+            <returns> Value (BigEndian) from register.</returns>
+        </member>
+        <member name="M:Iot.Device.Bmp180.Bmp180.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:Iot.Device.Bmp180.Sampling">
+            <summary>
+            BMP180 sampling.
+            </summary>
+        </member>
+        <member name="F:Iot.Device.Bmp180.Sampling.UltraLowPower">
+            <summary>
+            Skipped (output set to 0x80000).
+            </summary>
+        </member>
+        <member name="F:Iot.Device.Bmp180.Sampling.Standard">
+            <summary>
+            Oversampling x1.
+            </summary>
+        </member>
+        <member name="F:Iot.Device.Bmp180.Sampling.HighResolution">
+            <summary>
+            Oversampling x2.
+            </summary>
+        </member>
+        <member name="F:Iot.Device.Bmp180.Sampling.UltraHighResolution">
+            <summary>
+            Oversampling x4.
+            </summary>
+        </member>
+    </members>
+</doc>

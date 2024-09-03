@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Runtime.Serialization</name>
+    </assembly>
+    <members>
+        <member name="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter"/> class.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Serialize(System.Object)">
+            <summary>
+            Serializes the object, or graph of objects with the specified top (root), to a byte array.
+            </summary>
+            <param name="graph">The object at the root of the graph to serialize.</param>
+            <returns>A byte array with the serialized graph.</returns>
+            <remarks>This implementation is specific of .NET nanoFramework.</remarks>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">An error has occurred during serialization.</exception>
+        </member>
+        <member name="M:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Deserialize(System.Byte[])">
+            <summary>
+            Deserializes the specified byte array into an object graph.
+            </summary>
+            <param name="buffer">The byte array from which to deserialize the object graph.</param>
+            <returns>The top (root) of the object graph.</returns>
+            <remarks>This implementation is specific of .NET nanoFramework.</remarks>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">An error occurred while deserializing an object from the byte array.</exception>
+        </member>
+        <member name="T:System.Runtime.Serialization.SerializationException">
+            <summary>
+            The exception thrown when an error occurs during serialization or deserialization.
+            </summary>
+        </member>
+        <member name="F:System.Runtime.Serialization.SerializationException.Type">
+            <summary>
+            The type for which deserialization has failed.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.Serialization.FieldNoReflectionAttribute">
+            <summary>
+            Indicates that this field doesn't allow reflection.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.Serialization.SerializationHintsAttribute">
+            <summary>
+            Provides hints to the binary serializer on how to improve serialization and decrease the size of the serialialized representation.
+            </summary>
+        </member>
+        <member name="F:System.Runtime.Serialization.SerializationHintsAttribute.Options">
+            <summary>
+            Serialization options for the current object.
+            </summary>
+        </member>
+        <member name="F:System.Runtime.Serialization.SerializationHintsAttribute.ArraySize">
+            <summary>
+            Specifies the size of an array.
+            </summary>
+            <remarks>
+            If an array's size is fixed and known, it can be stated using the <see cref="F:System.Runtime.Serialization.SerializationHintsAttribute.ArraySize"/> option. A value of -1 can be used if the class being serialized only has one array of simple data types and no other fields.
+            </remarks>
+        </member>
+        <member name="F:System.Runtime.Serialization.SerializationHintsAttribute.BitPacked">
+            <summary>
+            Specifies the number of bits in which the current object is bit-packed.
+            </summary>
+            <remarks>
+            This can be applied only to ordinal types, <see cref="T:System.DateTime"/> and <see cref="T:System.TimeSpan"/>.
+            This indicates how many bits should be kept for an ordinal type. If <see cref="F:System.Runtime.Serialization.SerializationHintsAttribute.BitPacked"/> is 0, a data type's default size is applied (for example, 2 bytes for an <see cref="T:System.Int16"/> and 1 byte for the <see cref="T:System.Byte"/> type). 
+            Decorating a <see cref="T:System.Boolean"/> field with <see cref="F:System.Runtime.Serialization.SerializationHintsAttribute.BitPacked"/> attribute set to 1, only one bit - which is enough to represent true or false - is kept for the <see cref="T:System.Boolean"/> value.
+            </remarks>
+        </member>
+        <member name="F:System.Runtime.Serialization.SerializationHintsAttribute.RangeBias">
+            <summary>
+            Specifies the range bias adjustment for a particular serialized value.
+            </summary>
+            <remarks>
+            This can be applied to ordinal types, <see cref="T:System.DateTime"/> and <see cref="T:System.TimeSpan"/>.
+            It can't be applied to <see cref="T:System.Boolean"/> type objects.
+            With the exception of <see cref="T:System.Boolean"/>, all ordinal types can use <see cref="F:System.Runtime.Serialization.SerializationHintsAttribute.RangeBias"/>. It allows to store a value using fewer bits. Before saving the ordinal value, the range bias value is subtracted from it. For instance, a 16 bit data type has to used to store values that range between 1000 and 1500. The required bits can be decreased from 16 to 6 if the range is known in advance. When <see cref="F:System.Runtime.Serialization.SerializationHintsAttribute.RangeBias"/> is set to 1000, the number 1000 is subtracted from the original value before it's serialized.
+            </remarks>
+        </member>
+        <member name="F:System.Runtime.Serialization.SerializationHintsAttribute.Scale">
+            <summary>
+            Specifies the range bias adjustment for a particular serialized value.
+            </summary>
+            <remarks>
+            This can be applied to ordinal types, <see cref="T:System.DateTime"/> and <see cref="T:System.TimeSpan"/>.
+            It can't be applied to <see cref="T:System.Boolean"/> type objects.
+            When serializing a value, <see cref="F:System.Runtime.Serialization.SerializationHintsAttribute.Scale"/> helps save storage bits similar to <see cref="F:System.Runtime.Serialization.SerializationHintsAttribute.RangeBias"/>. The value to be serialized is divided by <see cref="F:System.Runtime.Serialization.SerializationHintsAttribute.Scale"/>. Defining a <see cref="F:System.Runtime.Serialization.SerializationHintsAttribute.Scale"/> of two, the range of values can be cut in half if a field only contains odd or even values. It's also possible to combine <see cref="F:System.Runtime.Serialization.SerializationHintsAttribute.RangeBias"/> with <see cref="F:System.Runtime.Serialization.SerializationHintsAttribute.Scale"/>. However, the order of operations must be taken into account here. The value will be first subtracted by <see cref="F:System.Runtime.Serialization.SerializationHintsAttribute.RangeBias"/> and then divided by <see cref="F:System.Runtime.Serialization.SerializationHintsAttribute.Scale"/>.
+            </remarks>
+        </member>
+        <member name="T:System.Runtime.Serialization.SerializationOptions">
+            <summary>
+            Options for serialization and deserialization.
+            </summary>
+        </member>
+        <member name="F:System.Runtime.Serialization.SerializationOptions.PointerNeverNull">
+            <summary>
+            A value indicating that the pointer to the serialized object is never <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="F:System.Runtime.Serialization.SerializationOptions.ElementsNeverNull">
+            <summary>
+            A value indicating that the elements in the serialized object are never <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="F:System.Runtime.Serialization.SerializationOptions.FixedType">
+            <summary>
+            A value indicating that the serialized object can only be an instance of the specified class, and not an instance of a derived class.
+            </summary>
+        </member>
+    </members>
+</doc>

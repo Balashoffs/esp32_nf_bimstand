@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Iot.Device.Ahtxx</name>
+    </assembly>
+    <members>
+        <member name="T:Iot.Device.Ahtxx.Aht10">
+            <summary>
+            AHT10/15 temperature and humidity sensor binding.
+            </summary>
+        </member>
+        <member name="F:Iot.Device.Ahtxx.Aht10.Aht10InitCommand">
+            <summary>
+            Initialization command acc. to datasheet.
+            </summary>
+        </member>
+        <member name="M:Iot.Device.Ahtxx.Aht10.#ctor(System.Device.I2c.I2cDevice)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Iot.Device.Ahtxx.Aht10"/> class.
+            </summary>
+            <param name="i2cDevice">I2C bus.</param>
+        </member>
+        <member name="T:Iot.Device.Ahtxx.Aht20">
+            <summary>
+            AHT20 temperature and humidity sensor binding.
+            </summary>
+        </member>
+        <member name="F:Iot.Device.Ahtxx.Aht20.Aht20InitCommand">
+            <summary>
+            Initialization command acc. to datasheet.
+            </summary>
+        </member>
+        <member name="M:Iot.Device.Ahtxx.Aht20.#ctor(System.Device.I2c.I2cDevice)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Iot.Device.Ahtxx.Aht20"/> class.
+            </summary>
+            <param name="i2cDevice">I2C bus.</param>
+        </member>
+        <member name="T:Iot.Device.Ahtxx.AhtBase">
+            <summary>
+             Base class for common functions of the AHT10/15 and AHT20 sensors.
+            </summary>
+        </member>
+        <member name="F:Iot.Device.Ahtxx.AhtBase.DefaultI2cAddress">
+            <summary>
+            Address of AHT10/15/20 device (0x38). This address is fix and cannot be changed.
+            This implies that only one device can be attached to a single I2C bus at a time.
+            </summary>
+        </member>
+        <member name="M:Iot.Device.Ahtxx.AhtBase.#ctor(System.Device.I2c.I2cDevice,System.Byte)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Iot.Device.Ahtxx.AhtBase" /> class for a sensor connected through I2C interface.
+            </summary>
+            <param name="i2cDevice">Reference to the initialized I2C interface device.</param>
+            <param name="initCommand">Type specific command for device initialization.</param>
+        </member>
+        <member name="M:Iot.Device.Ahtxx.AhtBase.GetTemperature">
+            <summary>
+            Gets the current temperature reading from the sensor.
+            Reading the temperature takes between 10 ms and 80 ms.
+            </summary>
+            <returns>Temperature reading.</returns>
+        </member>
+        <member name="M:Iot.Device.Ahtxx.AhtBase.GetHumidity">
+            <summary>
+            Gets the current relative humidity reading from the sensor.
+            Reading the humidity takes between 10 ms and 80 ms.
+            </summary>
+            <returns>Relative humidity reading.</returns>
+        </member>
+        <member name="M:Iot.Device.Ahtxx.AhtBase.Measure">
+            <summary>
+            Perform sequence to retrieve current readings from device.
+            </summary>
+        </member>
+        <member name="M:Iot.Device.Ahtxx.AhtBase.SoftReset">
+            <summary>
+            Perform soft reset command sequence.
+            </summary>
+        </member>
+        <member name="M:Iot.Device.Ahtxx.AhtBase.Initialize">
+            <summary>
+            Perform initialization (calibration) command sequence.
+            </summary>
+        </member>
+        <member name="M:Iot.Device.Ahtxx.AhtBase.Dispose">
+            <inheritdoc cref="T:System.IDisposable" />
+        </member>
+    </members>
+</doc>
